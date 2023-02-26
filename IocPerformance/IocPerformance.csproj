@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net472</TargetFramework>
+    <LangVersion>9</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>IocPerformance</AssemblyTitle>
@@ -62,6 +63,7 @@
     <PackageReference Include="Grace.DependencyInjection.Extensions" Version="7.1.0" />
     <PackageReference Include="Grace.Dynamic" Version="7.2.1" />
     <PackageReference Include="Lamar" Version="8.0.1" />
+    <PackageReference Include="Injector.NET" Version="8.0.0" />
     <PackageReference Include="LightInject" Version="6.6.1" />
     <PackageReference Include="LightInject.Interception" Version="2.0.4" />
     <PackageReference Include="LightInject.Microsoft.DependencyInjection" Version="3.5.0" />

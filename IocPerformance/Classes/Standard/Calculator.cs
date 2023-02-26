@@ -20,6 +20,7 @@ namespace IocPerformance.Classes.Standard
     }
 
     [UnityInterceptionLogger]
+    [InjectorDotNetLoggerAspect]
     public class Calculator1 : ICalculator1
     {
         private static int counter;
@@ -39,6 +40,7 @@ namespace IocPerformance.Classes.Standard
     }
 
     [UnityInterceptionLogger]
+    [InjectorDotNetLoggerAspect]
     public class Calculator2 : ICalculator2
     {
         private static int counter;
@@ -58,6 +60,7 @@ namespace IocPerformance.Classes.Standard
     }
 
     [UnityInterceptionLogger]
+    [InjectorDotNetLoggerAspect]
     public class Calculator3 : ICalculator3
     {
         private static int counter;

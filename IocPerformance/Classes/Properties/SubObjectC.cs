@@ -5,6 +5,7 @@ using NinjectAttr = Ninject;
 using StashBoxAttr = Stashbox.Attributes;
 using UnityAttr = Unity;
 using MvvmCrossAttr = MvvmCross.IoC;
+using InjectorDotNET = Solti.Utils.DI.Interfaces;
 
 namespace IocPerformance.Classes.Properties
 {
@@ -25,6 +26,7 @@ namespace IocPerformance.Classes.Properties
         [Stiletto.Inject]
         [StashBoxAttr.Dependency]
         [MvvmCrossAttr.MvxInject]
+        [InjectorDotNET.Inject]
         public IServiceC ServiceC { get; set; }
 
         public void Verify(string containerName)
