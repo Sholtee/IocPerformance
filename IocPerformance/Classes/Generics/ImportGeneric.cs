@@ -4,9 +4,11 @@ using System.ComponentModel.Composition;
 
 namespace IocPerformance.Classes.Generics
 {
+    public interface IImportGeneric<T> { }
+
     [Export(typeof(ImportGeneric<>)), PartCreationPolicy(CreationPolicy.NonShared)]
     [System.Composition.Export(typeof(ImportGeneric<>))]
-    public class ImportGeneric<T>
+    public class ImportGeneric<T>: IImportGeneric<T>
     {
         protected static int counter;
 

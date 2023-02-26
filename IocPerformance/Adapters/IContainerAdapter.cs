@@ -34,6 +34,8 @@ namespace IocPerformance.Adapters
 
         bool SupportsPrepareAndRegister { get; }
 
+        bool SupportsInterfacesOnly { get; }
+
         /// <summary>
         /// Prepares basic registration. All containers support basic features to be named containers.
         /// Allows fair comparison of feature poor vs rich containers, so additional registrations do not degrade richer containers.

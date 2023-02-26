@@ -12,7 +12,7 @@ namespace IocPerformance.Benchmarks.Advanced
         /// <summary>If false returned no methods are invoked.</summary>
         /// <param name="container">The container.</param>
         /// <returns><c>true</c> if supported otherwise <c>false</c></returns>
-        public override bool IsSupportedBy(IContainerAdapter container) => container.SupportAspNetCore;
+        public override bool IsSupportedBy(IContainerAdapter container) => container.SupportAspNetCore && !container.SupportsInterfacesOnly;
 
         public override void MethodToBenchmark(IContainerAdapter container)
         {

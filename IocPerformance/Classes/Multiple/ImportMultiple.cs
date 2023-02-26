@@ -4,9 +4,11 @@ using System.ComponentModel.Composition;
 
 namespace IocPerformance.Classes.Multiple
 {
+    public interface IImportMultiple1 { }
+
     [Export(typeof(ImportMultiple1)), PartCreationPolicy(CreationPolicy.NonShared)]
     [System.Composition.Export(typeof(ImportMultiple1))]
-    public class ImportMultiple1
+    public class ImportMultiple1: IImportMultiple1
     {
         protected static int counter;
 
@@ -52,9 +54,11 @@ namespace IocPerformance.Classes.Multiple
         }
     }
 
+    public interface IImportMultiple2 { }
+
     [Export(typeof(ImportMultiple2)), PartCreationPolicy(CreationPolicy.NonShared)]
     [System.Composition.Export(typeof(ImportMultiple2))]
-    public class ImportMultiple2
+    public class ImportMultiple2: IImportMultiple2
     {
         protected static int counter;
 
@@ -100,9 +104,11 @@ namespace IocPerformance.Classes.Multiple
         }
     }
 
+    public interface IImportMultiple3 { }
+
     [Export(typeof(ImportMultiple3)), PartCreationPolicy(CreationPolicy.NonShared)]
     [System.Composition.Export(typeof(ImportMultiple3))]
-    public class ImportMultiple3
+    public class ImportMultiple3: IImportMultiple3
     {
         protected static int counter;
 

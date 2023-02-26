@@ -1,16 +1,18 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using ZenIoc;
+using Solti.Utils.DI.Interfaces;
 
 namespace IocPerformance.Classes.Conditions
 {
-    [Export, PartCreationPolicy(CreationPolicy.NonShared)]
+    public interface IImportConditionObject3 {}
 
-    public class ImportConditionObject3
+    [Export, PartCreationPolicy(CreationPolicy.NonShared)]
+    public class ImportConditionObject3: IImportConditionObject3
     {
         private static int counter;
 
-        public ImportConditionObject3([ResolveNamed("ExportConditionalObject3")]  IExportConditionInterface exportConditionInterface)
+        public ImportConditionObject3([ResolveNamed("ExportConditionalObject3")][Options(Name = "ExportConditionalObject3")] IExportConditionInterface exportConditionInterface)
         {
             if (exportConditionInterface == null)
             {

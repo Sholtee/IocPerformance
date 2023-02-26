@@ -12,9 +12,18 @@ namespace IocPerformance.Benchmarks.Advanced
 
         public override void MethodToBenchmark(IContainerAdapter container)
         {
-            var importConditionObject1 = (ImportConditionObject1)container.Resolve(typeof(ImportConditionObject1));
-            var importConditionObject2 = (ImportConditionObject2)container.Resolve(typeof(ImportConditionObject2));
-            var importConditionObject3 = (ImportConditionObject3)container.Resolve(typeof(ImportConditionObject3));
+            if (container.SupportsInterfacesOnly)
+            {
+                var importConditionObject1 = (IImportConditionObject1)container.Resolve(typeof(IImportConditionObject1));
+                var importConditionObject2 = (IImportConditionObject2)container.Resolve(typeof(IImportConditionObject2));
+                var importConditionObject3 = (IImportConditionObject3)container.Resolve(typeof(IImportConditionObject3));
+            }
+            else
+            {
+                var importConditionObject1 = (ImportConditionObject1)container.Resolve(typeof(ImportConditionObject1));
+                var importConditionObject2 = (ImportConditionObject2)container.Resolve(typeof(ImportConditionObject2));
+                var importConditionObject3 = (ImportConditionObject3)container.Resolve(typeof(ImportConditionObject3));
+            }
         }
 
         public override void Verify(Adapters.IContainerAdapter container)
