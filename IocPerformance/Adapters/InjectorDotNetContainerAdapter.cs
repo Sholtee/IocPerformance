@@ -17,8 +17,6 @@ namespace IocPerformance.Adapters
 {
     public sealed class InjectorDotNetContainerAdapter : ContainerAdapterBase
     {
-        private IScopeFactory FScopeFactory;
-
         private IInjector FScope;
 
         public override string PackageName { get; } = "Injector.NET";
@@ -55,29 +53,18 @@ namespace IocPerformance.Adapters
         {
             FScope?.Dispose();
             FScope = null;
-
-            FScopeFactory?.Dispose();
-            FScopeFactory = null;
         }
 
-        public override void Prepare()
+        public override void Prepare() => FScope = (IInjector) ScopeFactory.Create((IServiceCollection svcs) =>
         {
-            FScopeFactory = ScopeFactory.Create((IServiceCollection svcs) =>
-            {
-                RegisterBasic(svcs);
-                RegisterPropertyInjection(svcs);
-                RegisterGeneric(svcs);
-                RegisterInterceptor(svcs);
-                RegisterMultiple(svcs);
-            });
-            FScope = FScopeFactory.CreateScope();
-        }
+            RegisterBasic(svcs);
+            RegisterPropertyInjection(svcs);
+            RegisterGeneric(svcs);
+            RegisterInterceptor(svcs);
+            RegisterMultiple(svcs);
+        });
 
-        public override void PrepareBasic()
-        {
-            FScopeFactory = ScopeFactory.Create(RegisterBasic);
-            FScope = FScopeFactory.CreateScope();
-        }
+        public override void PrepareBasic() => FScope = (IInjector) ScopeFactory.Create(RegisterBasic);
 
         private static void RegisterBasic(IServiceCollection svcs)
         {
