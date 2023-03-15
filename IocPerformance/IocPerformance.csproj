@@ -9,6 +9,8 @@
     <Product>IocPerformance</Product>
     <Copyright>Copyright ©  2020</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <!--abioc uses Roslyn v3.0.0 which is incompatible with the latest (v4) versions -->
+    <DefineConstants>$(DefineConstants);LEGACY_ROSLYN</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -45,7 +47,7 @@
     <None Include="Interception\Cauldron\CustomInterceptor.csx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="abioc" Version="0.8.0" />
+    <PackageReference Include="abioc" Version="0.8.0" Condition="$(DefineConstants.Contains('LEGACY_ROSLYN')) == 'true'" />
     <PackageReference Include="Autofac" Version="6.4.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
@@ -73,6 +75,9 @@
     <PackageReference Include="MicroResolver" Version="2.3.5" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.Build.Framework" Version="17.3.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.0.0" Condition="$(DefineConstants.Contains('LEGACY_ROSLYN'))" >
+        <NoWarn>$(NoWarn);NU1605</NoWarn>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Composition" Version="17.2.41" />
     <PackageReference Include="MugenMvvmToolkit" Version="6.5.0" />
@@ -82,9 +87,6 @@
     <PackageReference Include="Ninject.Extensions.ChildKernel" Version="3.3.0" />
     <PackageReference Include="Ninject.Extensions.Interception" Version="3.3.5" />
     <PackageReference Include="Ninject.Extensions.Interception.Linfu" Version="3.3.5" />
-    <PackageReference Include="ProxyGen.NET" Version="8.2.0-RoslynV3" >
-        <NoWarn>NU1605</NoWarn>
-    </PackageReference>
     <PackageReference Include="Pure.DI" Version="1.1.55">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -30,9 +30,9 @@ namespace IocPerformance.Adapters
             .ToString();
 
         public override string Url { get; } = "https://github.com/Sholtee/injector";
-
+#if !LEGACY_ROSLYN
         public override bool SupportsInterception { get; } = true;
-
+#endif
         public override bool SupportGeneric { get; } = true;
 
         public override bool SupportsMultiple { get; } = true;
@@ -58,9 +58,12 @@ namespace IocPerformance.Adapters
         public override void Prepare() => FScope = (IInjector) ScopeFactory.Create((IServiceCollection svcs) =>
         {
             RegisterBasic(svcs);
+            RegisterConditional(svcs);
             RegisterPropertyInjection(svcs);
             RegisterGeneric(svcs);
+#if !LEGACY_ROSLYN
             RegisterInterceptor(svcs);
+#endif
             RegisterMultiple(svcs);
         });
 
